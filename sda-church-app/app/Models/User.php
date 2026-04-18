@@ -24,6 +24,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'member_id',
+        'must_change_password',
     ];
 
     /**
@@ -46,6 +48,15 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'must_change_password' => 'boolean',
         ];
+    }
+
+    /**
+     * Get the member profile associated with the user.
+     */
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'member_id');
     }
 }

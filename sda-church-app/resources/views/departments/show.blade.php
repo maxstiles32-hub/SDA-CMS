@@ -59,7 +59,7 @@
                                     <tr class="hover:bg-gray-50 transition">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="h-9 w-9 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold uppercase text-sm mr-3">
+                                                <div class="w-9 aspect-[3/4] rounded-md bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold uppercase text-xs mr-3 overflow-hidden flex-shrink-0">
                                                     {{ substr($member->first_name, 0, 1) }}{{ substr($member->last_name, 0, 1) }}
                                                 </div>
                                                 <div>

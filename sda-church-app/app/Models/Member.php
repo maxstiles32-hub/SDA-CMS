@@ -56,4 +56,9 @@ class Member extends Model
     {
         return $this->hasMany(Transfer::class, 'member_id', 'member_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'member_id', 'member_id');
+    }
 }

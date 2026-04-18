@@ -21,19 +21,19 @@ class ExportService
     public function exportCsv(string $filename, array $headers, iterable $data): StreamedResponse
     {
         $headersFormatted = [
-            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
-            'Content-type'        => 'text/csv',
-            'Content-Disposition' => 'attachment; filename=' . $filename,
-            'Expires'             => '0',
-            'Pragma'              => 'public'
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+            'Expires' => '0',
+            'Pragma' => 'public'
         ];
 
         $callback = function () use ($headers, $data) {
             $file = fopen('php://output', 'w');
-            
+
             // Add UTF-8 BOM for proper Excel display
             fputs($file, "\xEF\xBB\xBF");
-            
+
             fputcsv($file, $headers);
 
             foreach ($data as $row) {
@@ -72,7 +72,7 @@ class ExportService
     {
         $zipFile = tempnam(sys_get_temp_dir(), 'zip');
         $zip = new ZipArchive();
-        
+
         if ($zip->open($zipFile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
             foreach ($filePaths as $file) {
                 $absolutePath = Storage::disk($disk)->path($file['path']);
@@ -86,7 +86,7 @@ class ExportService
         if (file_exists($zipFile)) {
             return response()->download($zipFile, $zipName)->deleteFileAfterSend(true);
         }
-        
+
         return null;
     }
 }

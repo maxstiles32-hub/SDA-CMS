@@ -94,6 +94,54 @@
 
                 <!-- Right Sidebar: Quick Actions & Charts -->
                 <div class="space-y-6">
+                    <!-- Gender Distribution Bar -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+                        <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Gender Distribution
+                        </h3>
+
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-sm bg-blue-500"></span>
+                                <span class="text-xs text-gray-600">Men</span>
+                                <span class="text-xs font-bold text-blue-600">{{ $maleCount }}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-sm bg-pink-500"></span>
+                                <span class="text-xs text-gray-600">Women</span>
+                                <span class="text-xs font-bold text-pink-600">{{ $femaleCount }}</span>
+                            </div>
+                        </div>
+
+                        @php
+                            $malePercent = $membersCount > 0 ? round(($maleCount / $membersCount) * 100, 1) : 0;
+                            $femalePercent = $membersCount > 0 ? round(($femaleCount / $membersCount) * 100, 1) : 0;
+                        @endphp
+                        <div class="w-full h-5 rounded-md overflow-hidden flex shadow-inner border border-gray-100">
+                            @if($maleCount > 0)
+                                <div class="h-full flex items-center justify-center"
+                                    style="width: {{ $malePercent }}%; background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                                    <span class="text-white text-[10px] font-bold">{{ $malePercent }}%</span>
+                                </div>
+                            @endif
+                            @if($femaleCount > 0)
+                                <div class="h-full flex items-center justify-center"
+                                    style="width: {{ $femalePercent }}%; background: linear-gradient(135deg, #ec4899, #db2777);">
+                                    <span class="text-white text-[10px] font-bold">{{ $femalePercent }}%</span>
+                                </div>
+                            @endif
+                        </div>
+                        @if($membersCount === 0)
+                            <div class="w-full h-5 rounded-md bg-gray-100 flex items-center justify-center">
+                                <span class="text-xs text-gray-400 italic">No members yet</span>
+                            </div>
+                        @endif
+                    </div>
+
                     <!-- Quick Actions -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                         <h3 class="text-lg font-bold text-gray-800 mb-4">Quick Actions</h3>

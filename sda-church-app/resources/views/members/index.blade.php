@@ -51,11 +51,11 @@
                                 <tr class="hover:bg-gray-50 transition">
                                     <td class="px-6 py-4 whitespace-nowrap outline-none">
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
+                                            <div class="flex-shrink-0 w-10 aspect-[3/4]">
                                                 @if($member->profile_picture)
-                                                    <img src="{{ asset('storage/' . $member->profile_picture) }}" alt="Profile" class="h-10 w-10 rounded-full object-cover border border-gray-200">
+                                                    <img src="{{ asset('storage/' . $member->profile_picture) }}" alt="Profile" class="w-full h-full rounded-md object-cover border border-gray-200">
                                                 @else
-                                                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold uppercase">
+                                                    <div class="w-full h-full rounded-md bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold uppercase text-xs">
                                                         {{ substr($member->first_name, 0, 1) }}{{ substr($member->last_name, 0, 1) }}
                                                     </div>
                                                 @endif

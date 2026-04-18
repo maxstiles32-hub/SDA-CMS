@@ -9,7 +9,7 @@ class DepartmentFund extends Model
     protected $fillable = ['department_id', 'amount', 'date_received', 'receipt_number', 'recorded_by'];
 
     public function department() { 
-        return $this->belongsTo(Department::class); 
+        return $this->belongsTo(Department::class, 'department_id', 'department_id'); 
     }
     
     public function recordedBy() { 

@@ -23,9 +23,9 @@ class DocumentController extends Controller
         $search = $request->input('search');
 
         $documents = Document::with('uploader')
-            ->when($search, function($query, $search) {
+            ->when($search, function ($query, $search) {
                 return $query->where('title', 'like', "%{$search}%")
-                             ->orWhere('description', 'like', "%{$search}%");
+                    ->orWhere('description', 'like', "%{$search}%");
             })
             ->latest()
             ->paginate(15)
@@ -134,12 +134,12 @@ class DocumentController extends Controller
     public function bulkDownload(Request $request)
     {
         $search = $request->input('search');
-        
+
         $query = Document::query();
 
         if ($search) {
             $query->where('title', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
+                ->orWhere('description', 'like', "%{$search}%");
         }
 
         $documents = $query->get();

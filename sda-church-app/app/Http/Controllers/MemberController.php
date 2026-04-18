@@ -43,7 +43,10 @@ class MemberController extends Controller
     public function create()
     {
         $departments = \App\Models\Department::orderBy('name')->get();
-        return view('members.create', compact('departments'));
+        $defaultPassword = 'SDA-1234';
+        // Pluck roles from users table manually or just define the enum values
+        $roles = ['Member', 'Super Admin', 'Pastor', 'Clerk', 'Treasurer', 'Head Elder', 'Department Leader', 'Funds Controller'];
+        return view('members.create', compact('departments', 'defaultPassword', 'roles'));
     }
 
     /**
@@ -56,7 +59,7 @@ class MemberController extends Controller
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'nullable|date',
             'gender' => 'required|in:Male,Female',
-            'email' => 'nullable|email|max:255|unique:members,email',
+            'email' => 'required|email|max:255|unique:members,email|unique:users,email',
             'contact_number' => 'nullable|string|max:20',
             'address' => 'nullable|string',
             'baptism_date' => 'nullable|date',
@@ -64,9 +67,11 @@ class MemberController extends Controller
             'departments' => 'nullable|array',
             'departments.*' => 'exists:departments,department_id',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'role' => 'required|string',
+            'default_password' => 'required|string|min:8',
         ]);
 
-        $data = \Illuminate\Support\Arr::except($validated, ['departments', 'profile_picture']);
+        $data = \Illuminate\Support\Arr::except($validated, ['departments', 'profile_picture', 'role', 'default_password']);
         
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
@@ -75,13 +80,34 @@ class MemberController extends Controller
             $data['profile_picture'] = $path;
         }
 
-        $member = Member::create($data);
+        \Illuminate\Support\Facades\DB::beginTransaction();
+        try {
+            $member = Member::create($data);
 
-        if (!empty($validated['departments'])) {
-            $member->departments()->attach($validated['departments']);
+            if (!empty($validated['departments'])) {
+                $member->departments()->attach($validated['departments']);
+            }
+
+            // Create User Account
+            $username = strtolower($member->first_name . '.' . $member->last_name) . rand(10, 99);
+            \App\Models\User::create([
+                'first_name' => $member->first_name,
+                'last_name' => $member->last_name,
+                'username' => $username,
+                'email' => $member->email,
+                'password' => \Illuminate\Support\Facades\Hash::make($validated['default_password']),
+                'role' => $validated['role'],
+                'member_id' => $member->member_id,
+                'must_change_password' => true,
+            ]);
+
+            \Illuminate\Support\Facades\DB::commit();
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\DB::rollBack();
+            return back()->withInput()->withErrors(['error' => 'Failed to create member and user account. ' . $e->getMessage()]);
         }
 
-        return redirect()->route('members.index')->with('success', 'Member registered successfully.');
+        return redirect()->route('members.index')->with('success', 'Member and User account registered successfully.');
     }
 
     /**

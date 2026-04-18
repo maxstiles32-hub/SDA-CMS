@@ -19,7 +19,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role === 'Member') {
+            return redirect()->route('member.dashboard');
+        }
+
         $membersCount = Member::count();
+        $maleCount = Member::where('gender', 'Male')->count();
+        $femaleCount = Member::where('gender', 'Female')->count();
         $departmentsCount = Department::count();
         $baptismsCount = Baptism::count();
         
@@ -32,7 +38,9 @@ class DashboardController extends Controller
         $activities = ActivityLog::with('user')->latest()->take(5)->get();
 
         return view('dashboard', compact(
-            'membersCount', 
+            'membersCount',
+            'maleCount',
+            'femaleCount',
             'departmentsCount', 
             'baptismsCount', 
             'totalFinances', 

@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', \App\Http\Middleware\RestrictTreasurerAccess::class, \App\Http\Middleware\RestrictFundsControllerAccess::class])->name('dashboard');
 
-Route::middleware(['auth', \App\Http\Middleware\RestrictTreasurerAccess::class, \App\Http\Middleware\RestrictFundsControllerAccess::class])->group(function () {
+Route::middleware(['auth', \App\Http\Middleware\RestrictMemberAccess::class, \App\Http\Middleware\RestrictTreasurerAccess::class, \App\Http\Middleware\RestrictFundsControllerAccess::class])->group(function () {
     // Department Routes
     Route::get('/departments/export', [DepartmentController::class, 'export'])->name('departments.export');
     Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
@@ -45,6 +45,11 @@ Route::middleware(['auth', \App\Http\Middleware\RestrictTreasurerAccess::class, 
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/change-password', [\App\Http\Controllers\ForcePasswordController::class, 'create'])->name('password.change.form');
+    Route::post('/change-password', [\App\Http\Controllers\ForcePasswordController::class, 'store'])->name('password.change.store');
+
+    Route::get('/my-dashboard', [\App\Http\Controllers\MemberDashboardController::class, 'index'])->name('member.dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
