@@ -11,8 +11,8 @@
             <!-- Premium Profile Overview Section -->
             <div class="relative bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-md transition-shadow duration-300">
                 <!-- Decorative background elements -->
-                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-gradient-to-br from-indigo-50 to-purple-50 blur-3xl opacity-60"></div>
-                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-gradient-to-tr from-blue-50 to-indigo-50 blur-3xl opacity-60"></div>
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-50 to-purple-50 blur-3xl opacity-60"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-gradient-to-tr from-blue-50 to-primary-50 blur-3xl opacity-60"></div>
                 
                 <div class="p-8 sm:p-10 relative z-10 flex flex-col sm:flex-row gap-8 items-center sm:items-stretch">
                     <!-- Avatar Frame -->
@@ -21,7 +21,7 @@
                             @if($member->profile_picture)
                                 <img src="{{ asset('storage/' . $member->profile_picture) }}" alt="Profile" class="w-full h-full object-cover">
                             @else
-                                <span class="text-4xl sm:text-5xl font-black text-indigo-200/80 uppercase tracking-tighter">
+                                <span class="text-4xl sm:text-5xl font-black text-primary-200/80 uppercase tracking-tighter">
                                     {{ substr($member->first_name, 0, 1) }}{{ substr($member->last_name, 0, 1) }}
                                 </span>
                             @endif
@@ -41,13 +41,13 @@
 
                         <!-- Name -->
                         <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-2">
-                            {{ $member->first_name }} <span class="text-indigo-600">{{ $member->last_name }}</span>
+                            {{ $member->first_name }} <span class="text-primary-600">{{ $member->last_name }}</span>
                         </h1>
                         
                         <!-- Email -->
                         <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-gray-500 mt-2">
                             <div class="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-xl border border-gray-100">
-                                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 <span class="font-medium">{{ $member->email ?? 'No email provided' }}</span>
                             </div>
                         </div>
@@ -104,13 +104,13 @@
                     <!-- Departments -->
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                         <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                             My Departments / Ministries
                         </h3>
                         @if($member->departments->count() > 0)
                             <div class="flex flex-wrap gap-2">
                                 @foreach($member->departments as $dept)
-                                    <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium border border-indigo-100 shadow-sm">{{ $dept->name }}</span>
+                                    <span class="px-3 py-1.5 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium border border-primary-100 shadow-sm">{{ $dept->name }}</span>
                                 @endforeach
                             </div>
                         @else

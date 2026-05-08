@@ -56,7 +56,7 @@
                                         @focus="open = true"
                                         @keydown.escape="open = false"
                                         placeholder="Search member by name or ID..."
-                                        class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        class="block w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                                         autocomplete="off">
                                     
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -72,7 +72,7 @@
                                     <ul class="max-h-56 overflow-y-auto" role="listbox">
                                         <template x-for="item in filteredItems" :key="item.id">
                                             <li @click="selectItem(item)"
-                                                class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-white transition"
+                                                class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-primary-600 hover:text-white transition"
                                                 role="option">
                                                 <span class="block truncate" x-text="item.name"></span>
                                             </li>
@@ -105,12 +105,12 @@
 
                         <div class="mb-4">
                             <x-input-label for="notes" :value="__('Notes')" />
-                            <textarea id="notes" name="notes" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="3">{{ old('notes', $baptism->notes) }}</textarea>
+                            <textarea id="notes" name="notes" class="block mt-1 w-full border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" rows="3">{{ old('notes', $baptism->notes) }}</textarea>
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <a href="{{ route('baptisms.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 mr-3">
+                            <a href="{{ route('baptisms.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 mr-3">
                                 Cancel
                             </a>
                             <x-primary-button>

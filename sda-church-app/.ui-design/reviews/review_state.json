@@ -1,0 +1,16 @@
+{
+  "review_id": "full_app_20260425_120000",
+  "target": "resources/views/ (entire app)",
+  "focus_areas": ["visual", "usability"],
+  "context": "content_management",
+  "platform": "all_platforms",
+  "status": "complete",
+  "started_at": "2026-04-25T12:00:00Z",
+  "issues_found": 14,
+  "severity_counts": {
+    "critical": 2,
+    "major": 5,
+    "minor": 4,
+    "suggestion": 3
+  }
+}

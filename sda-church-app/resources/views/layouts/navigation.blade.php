@@ -1,17 +1,17 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 border-b-2 border-b-primary-500">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-[180px]">
-            <div class="flex">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo style="width: 35mm; height: 45mm;" class="block text-gray-800" />
+                        <x-application-logo class="h-10 w-auto block text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
                     @if(!in_array(Auth::user()->role, ['Treasurer', 'Funds Controller']))
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
@@ -30,7 +30,7 @@
                                     <button class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out cursor-pointer mt-[6px]">
                                         <div>{{ __('Finance') }}</div>
                                         <div class="ms-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <svg aria-hidden="true" class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -60,7 +60,7 @@
                                     <button class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out cursor-pointer mt-[6px]">
                                         <div>{{ __('Funds Controller') }}</div>
                                         <div class="ms-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <svg aria-hidden="true" class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -78,18 +78,35 @@
                         </div>
                     @endif
                     @if(!in_array(Auth::user()->role, ['Treasurer', 'Funds Controller']))
-                        <x-nav-link :href="route('documents.index')" :active="request()->routeIs('documents.*')">
-                            {{ __('Documents') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('baptisms.index')" :active="request()->routeIs('baptisms.*')">
-                            {{ __('Baptisms') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('announcements.index')" :active="request()->routeIs('announcements.*')">
-                            {{ __('Announcements') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('transfers.index')" :active="request()->routeIs('transfers.*')">
-                            {{ __('Transfers') }}
-                        </x-nav-link>
+                        <div class="hidden sm:flex sm:items-center">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <button class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out cursor-pointer mt-[6px]"
+                                            :class="{ 'border-primary-400 text-primary-700': request()->routeIs('documents.*') || request()->routeIs('baptisms.*') || request()->routeIs('announcements.*') || request()->routeIs('transfers.*') }">
+                                        <div>{{ __('Records') }}</div>
+                                        <div class="ms-1">
+                                            <svg aria-hidden="true" class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('documents.index')" :active="request()->routeIs('documents.*')">
+                                        {{ __('Documents') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('baptisms.index')" :active="request()->routeIs('baptisms.*')">
+                                        {{ __('Baptisms') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('announcements.index')" :active="request()->routeIs('announcements.*')">
+                                        {{ __('Announcements') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('transfers.index')" :active="request()->routeIs('transfers.*')">
+                                        {{ __('Transfers') }}
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -112,7 +129,11 @@
                             $colourClass = $colours[abs(crc32($firstName . $lastName)) % count($colours)];
                         @endphp
 
-                        <button class="inline-flex items-center gap-2.5 px-2.5 py-1.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-indigo-300 shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-1">
+                        <button aria-label="Open user menu" class="inline-flex items-center gap-2.5 px-2.5 py-1.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-primary-300 shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-1">
+                            {{-- Avatar --}}
+                            <div class="w-8 h-8 rounded-full {{ $colourClass }} flex items-center justify-center text-white text-xs font-bold flex-shrink-0" aria-hidden="true">
+                                {{ $initials }}
+                            </div>
                             {{-- Name only --}}
                             <div class="text-left hidden lg:block">
                                 <div class="text-sm font-semibold text-gray-800 leading-tight">
@@ -121,7 +142,7 @@
                             </div>
 
                             {{-- Chevron --}}
-                            <svg class="fill-current h-3.5 w-3.5 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <svg aria-hidden="true" class="fill-current h-3.5 w-3.5 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
@@ -135,11 +156,11 @@
                                 <div class="text-xs text-gray-400 truncate">{{ Auth::user()->email }}</div>
                             </div>
                             <span class="mt-2 inline-block px-2 py-0.5 text-xs font-bold rounded-full
-                                @if($role === 'Super Admin') bg-indigo-100 text-indigo-700
+                                @if($role === 'Super Admin') bg-primary-100 text-primary-700
                                 @elseif($role === 'Treasurer') bg-emerald-100 text-emerald-700
                                 @elseif($role === 'Funds Controller') bg-amber-100 text-amber-700
                                 @elseif($role === 'Member') bg-gray-100 text-gray-600
-                                @else bg-violet-100 text-violet-700
+                                @else bg-neutral-100 text-neutral-700
                                 @endif">
                                 {{ $role }}
                             </span>
@@ -177,7 +198,7 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" :aria-expanded="open.toString()" aria-label="Toggle navigation menu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -226,6 +247,7 @@
                 </x-responsive-nav-link>
             @endif
             @if(!in_array(Auth::user()->role, ['Treasurer', 'Funds Controller']))
+                <div class="px-4 py-2 text-xs font-semibold tracking-wide text-gray-500 uppercase">{{ __('Records') }}</div>
                 <x-responsive-nav-link :href="route('documents.index')" :active="request()->routeIs('documents.*')">
                     {{ __('Documents') }}
                 </x-responsive-nav-link>
@@ -248,10 +270,10 @@
                     <div class="font-semibold text-sm text-gray-800">{{ $firstName }} {{ $lastName }}</div>
                     <div class="text-xs text-gray-400">{{ Auth::user()->email }}</div>
                     <span class="mt-1 inline-block px-2 py-0.5 text-xs font-bold rounded-full
-                        @if($role === 'Super Admin') bg-indigo-100 text-indigo-700
+                        @if($role === 'Super Admin') bg-primary-100 text-primary-700
                         @elseif($role === 'Treasurer') bg-emerald-100 text-emerald-700
                         @elseif($role === 'Funds Controller') bg-amber-100 text-amber-700
-                        @elseif($role === 'Member') bg-gray-100 text-gray-600
+                        @elseif($role === 'Member') bg-neutral-100 text-neutral-600
                         @else bg-violet-100 text-violet-700
                         @endif">
                         {{ $role }}

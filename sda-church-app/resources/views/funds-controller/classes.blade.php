@@ -32,7 +32,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <x-input-label for="class_name" :value="__('Select Class')" />
-                            <select id="class_name" name="class_name" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                            <select id="class_name" name="class_name" class="mt-1 block w-full border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" required>
                                 <option value="">-- Choose Class --</option>
                                 <option value="Eld. Peter Seku class">Eld. Peter Seku class</option>
                                 <option value="Eld. Oklu class">Eld. Oklu class</option>
