@@ -349,7 +349,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
 
                     <!-- Side-by-Side Small Tables -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -473,6 +472,7 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- Class Funds -->
                             <div x-show="fundsTab === 'classes'" x-cloak>
@@ -505,7 +505,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
