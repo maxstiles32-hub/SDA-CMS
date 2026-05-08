@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('department_funds', function (Blueprint $table) {
             $table->id();
-            $table->integer('department_id');
+            $table->unsignedBigInteger('department_id');
             $table->decimal('amount', 10, 2);
             $table->date('date_received');
             $table->string('receipt_number')->nullable()->unique();

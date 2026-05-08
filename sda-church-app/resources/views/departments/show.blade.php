@@ -8,7 +8,7 @@
                 <p class="text-sm text-gray-500 mt-1">{{ $department->description ?? 'No description.' }}</p>
             </div>
             <a href="{{ route('departments.index') }}"
-               class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 transition">
+               class="inline-flex items-center px-4 py-2 bg-primary-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-primary-700 transition">
                 &larr; All Departments
             </a>
         </div>
@@ -19,7 +19,7 @@
 
             <!-- Summary Card -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 flex items-center">
-                <div class="p-4 rounded-full bg-indigo-100 text-indigo-600 mr-5">
+                <div class="p-4 rounded-full bg-primary-100 text-primary-600 mr-5">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
@@ -59,7 +59,7 @@
                                     <tr class="hover:bg-gray-50 transition">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="w-9 aspect-[3/4] rounded-md bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold uppercase text-xs mr-3 overflow-hidden flex-shrink-0">
+                                                <div class="w-9 aspect-[3/4] rounded-md bg-primary-100 flex items-center justify-center text-primary-700 font-bold uppercase text-xs mr-3 overflow-hidden flex-shrink-0">
                                                     {{ substr($member->first_name, 0, 1) }}{{ substr($member->last_name, 0, 1) }}
                                                 </div>
                                                 <div>
@@ -82,7 +82,7 @@
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right">
-                                            <a href="{{ route('members.show', $member->member_id) }}" class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">View Profile</a>
+                                            <a href="{{ route('members.show', $member->member_id) }}" class="text-primary-600 hover:text-primary-900 text-sm font-medium">View Profile</a>
                                         </td>
                                     </tr>
                                 @endforeach

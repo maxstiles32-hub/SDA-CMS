@@ -132,11 +132,11 @@
             <span class="totals-label">TOTAL DONATIONS:</span>
             <span class="totals-value">GHS {{ number_format($totalDonations, 2) }}</span>
         </div>
-        <div class="totals-row" style="background:#f0fdf4; color:#065f46;">
+        <div class="totals-row" style="background:#d7e6dc; color:#1a3323;">
             <span class="totals-label">TOTAL INCOME:</span>
             <span class="totals-value">GHS {{ number_format($totalIncome, 2) }}</span>
         </div>
-        <div class="totals-row" style="background:#fef2f2; color:#991b1b;">
+        <div class="totals-row" style="background:#fef2f2; color:#b91c1c;">
             <span class="totals-label">TOTAL EXPENSES:</span>
             <span class="totals-value">GHS {{ number_format($totalExpenses, 2) }}</span>
         </div>

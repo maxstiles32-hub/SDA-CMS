@@ -15,7 +15,7 @@
 
                         <div class="mb-4">
                             <x-input-label for="member_id" :value="__('Member')" />
-                            <select id="member_id" name="member_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                            <select id="member_id" name="member_id" class="block mt-1 w-full border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" required>
                                 <option value="">Select Member</option>
                                 @foreach($members as $member)
                                     <option value="{{ $member->member_id }}" {{ old('member_id', $transfer->member_id) == $member->member_id ? 'selected' : '' }}>
@@ -29,7 +29,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="mb-4">
                                 <x-input-label for="transfer_type" :value="__('Transfer Type')" />
-                                <select id="transfer_type" name="transfer_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                                <select id="transfer_type" name="transfer_type" class="block mt-1 w-full border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" required>
                                     <option value="In" {{ old('transfer_type', $transfer->transfer_type) == 'In' ? 'selected' : '' }}>Transfer In (Joining)</option>
                                     <option value="Out" {{ old('transfer_type', $transfer->transfer_type) == 'Out' ? 'selected' : '' }}>Transfer Out (Leaving)</option>
                                 </select>
@@ -38,7 +38,7 @@
 
                             <div class="mb-4">
                                 <x-input-label for="status" :value="__('Status')" />
-                                <select id="status" name="status" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                                <select id="status" name="status" class="block mt-1 w-full border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" required>
                                     <option value="Pending" {{ old('status', $transfer->status) == 'Pending' ? 'selected' : '' }}>Pending</option>
                                     <option value="Approved" {{ old('status', $transfer->status) == 'Approved' ? 'selected' : '' }}>Approved</option>
                                     <option value="Completed" {{ old('status', $transfer->status) == 'Completed' ? 'selected' : '' }}>Completed</option>
@@ -78,12 +78,12 @@
 
                         <div class="mb-4">
                             <x-input-label for="notes" :value="__('Notes (Optional)')" />
-                            <textarea id="notes" name="notes" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="3">{{ old('notes', $transfer->notes) }}</textarea>
+                            <textarea id="notes" name="notes" class="block mt-1 w-full border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" rows="3">{{ old('notes', $transfer->notes) }}</textarea>
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <a href="{{ route('transfers.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 mr-3">
+                            <a href="{{ route('transfers.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 mr-3">
                                 Cancel
                             </a>
                             <x-primary-button>

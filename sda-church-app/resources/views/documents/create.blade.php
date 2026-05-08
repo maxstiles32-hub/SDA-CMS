@@ -31,13 +31,13 @@
                         <!-- Document Title -->
                         <div>
                             <label for="title" class="block font-medium text-sm text-gray-700">Document Title <span class="text-red-500">*</span></label>
-                            <input id="title" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="title" value="{{ old('title') }}" required autofocus />
+                            <input id="title" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50" type="text" name="title" value="{{ old('title') }}" required autofocus />
                         </div>
 
                         <!-- Document Type -->
                         <div>
                             <label for="document_type" class="block font-medium text-sm text-gray-700">Document Type <span class="text-red-500">*</span></label>
-                            <select id="document_type" name="document_type" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                            <select id="document_type" name="document_type" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50" required>
                                 <option value="" disabled selected>Select a category</option>
                                 <option value="Minutes" {{ old('document_type') == 'Minutes' ? 'selected' : '' }}>Meeting Minutes</option>
                                 <option value="Policy" {{ old('document_type') == 'Policy' ? 'selected' : '' }}>Church Policy / Guidelines</option>
@@ -50,20 +50,20 @@
                         <!-- Description -->
                         <div>
                             <label for="description" class="block font-medium text-sm text-gray-700">Description (Optional)</label>
-                            <textarea id="description" name="description" rows="3" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
+                            <textarea id="description" name="description" rows="3" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
                             <p class="text-xs text-gray-500 mt-1">Provide a brief summary of what this document contains.</p>
                         </div>
 
                         <!-- File Upload -->
                         <div class="mt-4">
                             <label class="block font-medium text-sm text-gray-700 mb-2">Select File <span class="text-red-500">*</span></label>
-                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-indigo-400 transition bg-gray-50">
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition bg-gray-50">
                                 <div class="space-y-1 text-center">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                                         <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     <div class="flex text-sm text-gray-600 justify-center">
-                                        <label for="file" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 p-1">
+                                        <label for="file" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500 p-1">
                                             <span>Upload a file</span>
                                             <input id="file" name="file" type="file" class="sr-only" required>
                                         </label>
@@ -76,7 +76,7 @@
 
                         <div class="flex items-center justify-end mt-8 border-t pt-6">
                             <a href="{{ route('documents.index') }}" class="text-sm text-gray-600 hover:text-gray-900 mr-4">Cancel</a>
-                            <x-primary-button class="bg-indigo-600 hover:bg-indigo-700 shadow-sm border-none">
+                            <x-primary-button class="bg-primary-600 hover:bg-primary-700 shadow-sm border-none">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                                 {{ __('Upload Document') }}
                             </x-primary-button>

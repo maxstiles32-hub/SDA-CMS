@@ -6,11 +6,11 @@
             </h2>
             <div class="space-x-2">
                 <a href="{{ route('members.edit', $member->member_id) }}"
-                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
                     Edit Profile
                 </a>
                 <a href="{{ route('members.index') }}"
-                    class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                    class="inline-flex items-center px-4 py-2 bg-primary-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-primary-700 focus:bg-primary-700 active:bg-primary-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition ease-in-out duration-150">
                     &larr; Back to Directory
                 </a>
             </div>
@@ -30,7 +30,7 @@
                                 class="w-full h-full object-cover">
                         @else
                             <div
-                                class="w-full h-full bg-indigo-100 flex items-center justify-center text-indigo-700 text-4xl font-bold uppercase shadow-inner">
+                                class="w-full h-full bg-primary-100 flex items-center justify-center text-primary-700 text-4xl font-bold uppercase shadow-inner">
                                 {{ substr($member->first_name, 0, 1) }}{{ substr($member->last_name, 0, 1) }}
                             </div>
                         @endif
@@ -124,14 +124,14 @@
                         <div class="flex justify-between items-center mb-4 border-b pb-2">
                             <h4 class="text-lg font-bold text-gray-900">Departments & Ministries</h4>
                             <button
-                                class="text-indigo-600 hover:text-indigo-800 text-sm font-medium text-xs border border-indigo-200 rounded px-2 py-1 bg-indigo-50">Manage</button>
+                                class="text-primary-600 hover:text-primary-800 text-sm font-medium text-xs border border-primary-200 rounded px-2 py-1 bg-primary-50">Manage</button>
                         </div>
 
                         @if($member->departments->count() > 0)
                             <div class="flex flex-wrap gap-2">
                                 @foreach($member->departments as $dept)
                                     <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
                                         {{ $dept->name }}
                                     </span>
                                 @endforeach
